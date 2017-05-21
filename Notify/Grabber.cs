@@ -1,16 +1,15 @@
-﻿using Screeps.ApiClient;
+using Screeps.ApiClient;
 
 namespace Screeps.Notify
 {
     public delegate void NotificationHandler(int tick, string message);
+    
     public class Grabber
     {
-        Client client = null;
+        Client client;
         int DeleteLimit = 0;
 
         public event NotificationHandler OnNotification = (a,b) => { };
-
-        public int Interval { get; set; }
 
         public Grabber(string screepsUsername, string screepsPassword)
         {
@@ -20,10 +19,7 @@ namespace Screeps.Notify
         public int Poll()
         {
             int notifCount = ProcessNotifications();
-            if (notifCount > 0)
-            {
-                ClearNotifications();
-            }
+            if (notifCount > 0) ClearNotifications();
             return notifCount;
         }
 
@@ -43,8 +39,7 @@ namespace Screeps.Notify
         
         void ClearNotifications()
         {
-            string command = string.Format("(()=>{{Memory.__notify=Memory.__notify.filter((notification)=>notification.tick>{0});return \"Notifications collected\";}})();", DeleteLimit);
-            client.UserConsole(command);
+            client.UserConsole(string.Format("(()=>{{Memory.__notify=Memory.__notify.filter((notification)=>notification.tick>{0});return \"Notifications collected\";}})();", DeleteLimit));
         }
     }
 }
