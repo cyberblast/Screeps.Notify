@@ -3,4 +3,4 @@ It is based on the C# [cyberblast/Screeps.ApiClient](https://github.com/cyberbla
 
 This project only includes the grabber class library - without an application running it. 
 
-There is a [console application](https://github.com/cyberblast/Screeps.NotifyConsole) project available running this notify library and an azure cloud [service worker](https://github.com/cyberblast/Screeps.NotifyService) project.
+There is a [console application](https://github.com/cyberblast/Screeps.NotifyConsole) project available running this notify library to show how it works.
